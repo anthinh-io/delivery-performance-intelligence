@@ -1,0 +1,10 @@
+[project]
+name = "delivery-performance-intelligence"
+version = "0.1.0"
+description = "A web application for managing and predicting delivery performance in logistics, powered by ML models trained on the Olist Brazilian E-Commerce dataset."
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "jupyter>=1.1.1",
+    "pandas>=3.0.3",
+]
