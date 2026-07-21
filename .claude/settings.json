@@ -3,6 +3,6 @@
   "advisorModel": "opus",
   "attribution": { "commit": "", "pr": "" },
   "permissions": {
-    "allow": ["Bash(notebooklm *)", "Bash(gh *)"]
+    "allow": ["Bash(notebooklm *)", "Bash(gh *)", "Bash(uv *)"]
   }
 }
