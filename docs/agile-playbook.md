@@ -68,3 +68,61 @@ Một Issue/Sprint được coi là hoàn thành khi:
 - [ ] Không có rò rỉ dữ liệu (data leakage) đối với các task liên quan đến mô hình học máy
 - [ ] Đã commit/tạo Pull Request tương ứng
 - [ ] Tự đánh giá lại Sprint Goal (đạt/chưa đạt) và ghi chú điều chỉnh cho sprint sau ngay trong Issue đóng milestone
+
+## 7. Tiêu chí chấp nhận (Acceptance Criteria): Checklist hay Given–When–Then?
+
+### 7.1 So sánh theo nhiều khía cạnh
+
+**1. Bản chất ngôn ngữ**
+- Checklist: danh sách kết quả cần đạt, không ép thứ tự logic — trả lời câu hỏi "làm xong chưa".
+- Given–When–Then: xuất phát từ BDD (Behavior-Driven Development), mô tả hành vi hệ thống theo cấu trúc tiền đề → hành động → kết quả — trả lời câu hỏi "hệ thống phản ứng đúng khi nào".
+
+**2. Độ rõ ràng về ngữ cảnh & phụ thuộc**
+- GWT buộc phải nêu `Given`, tự động lộ ra phụ thuộc giữa các story (VD story sau phải `Given` kết quả của story trước).
+- Checklist thường chỉ liệt kê kết quả cuối, dễ bỏ sót tiền đề ngầm định — đọc lại sau vài tuần dễ không biết cần gì trước khi kiểm tra được mục đó.
+
+**3. Khả năng chuyển thành test tự động**
+- GWT ánh xạ gần 1-1 sang khung BDD (Cucumber, pytest-bdd, Gherkin) — có thể tái dùng gần như nguyên văn làm test tự động.
+- Checklist là câu tự nhiên, muốn tự động hóa phải diễn giải lại thành test, tốn thêm một bước chuyển đổi.
+- Với story dạng đo đạc/khám phá dữ liệu (kiểm bằng cách đọc số liệu trong notebook, không phải test tự động), lợi thế này của GWT không phát huy tác dụng.
+
+**4. Tương thích với tính năng có sẵn của GitHub**
+- Checklist (`- [ ]`) được GitHub render thành checkbox tương tác, tự tính progress bar "x/y completed" — là input cho field Sub-issues progress dùng trong check-in hằng ngày (mục 5).
+- GWT ở dạng văn xuôi không tự có checkbox — muốn giữ cả hai lợi ích phải viết dạng lai (checklist lồng GWT trong từng dòng, như ví dụ ở 7.3).
+
+**5. Độ phù hợp theo loại story (khác biệt lớn nhất, đáng cân nhắc nhất)**
+- Story có "người dùng/client thao tác → hệ thống phản hồi" (API, giao diện, e2e) → GWT tự nhiên: có actor, có action, có phản hồi rõ ràng.
+- Story dạng "đo đạc/xác nhận một sự thật" (tải dữ liệu, kiểm tra chất lượng, huấn luyện mô hình) → ép vào GWT thường gượng ép, các câu `When` dễ na ná nhau ("khi tôi chạy notebook/script") vì đây là một phép đo, không phải hành vi hệ thống phản ứng với người dùng.
+
+**6. Chi phí viết & bảo trì**
+- Checklist: nhanh viết, linh hoạt, không có chi phí cú pháp.
+- GWT: tốn thời gian hơn, nhưng đổi lại buộc nghĩ kỹ điều kiện đầu vào — với story mơ hồ là lợi ích thật, với story đơn giản là overhead thừa (độ phức tạp cú pháp vượt quá độ phức tạp công việc).
+
+**7. Giá trị học tập**
+- GWT là kỹ năng chuyển giao được sang viết test/BDD chuyên nghiệp sau này, luyện tư duy "hình dung kịch bản kiểm chứng trước khi code".
+- Checklist là kỹ năng chốt DoD, đơn giản, thực dụng, ít học được thêm gì mới nếu đã quen.
+
+### 7.2 Quy tắc chọn nhanh
+
+- Story kiểu đo đạc/xác nhận dữ liệu, số liệu, mô hình → **Checklist**.
+- Story kiểu người dùng/client thao tác rồi hệ thống phản hồi → **Given–When–Then**.
+- Phân vân → mặc định Checklist, chỉ đổi sang GWT khi AC có nhiều hơn 1 kịch bản hành vi rõ rệt cần phân biệt.
+
+### 7.3 Ví dụ áp dụng
+
+**Story "kiểm tra chất lượng dữ liệu thô" → Checklist**
+
+> Là người phát triển, tôi muốn kiểm tra chất lượng dữ liệu thô (null, trùng lặp, kiểu dữ liệu sai), để tránh lỗi ở bước phân tích sâu.
+> - [ ] Notebook liệt kê % giá trị thiếu theo từng cột của các bảng chính
+> - [ ] Ghi nhận số dòng trùng lặp và các cột sai kiểu dữ liệu (nếu có)
+
+Đây là việc đo đạc một sự thật có sẵn trong dữ liệu, không có "người dùng thao tác lên hệ thống" — ép vào GWT sẽ ra một câu `When` gượng ép kiểu "When tôi chạy notebook", không mô tả hành vi thật nào cả.
+
+**Story "nhập đơn hàng nhận dự đoán rủi ro trễ thời gian thực" → Given–When–Then**
+
+> Là người quản lý vận hành, tôi muốn nhập thông tin đơn hàng trên web và nhận dự đoán rủi ro trễ thời gian thực, để chủ động xử lý rủi ro thay vì phản ứng sau khi trễ.
+> - **Given** API dự đoán đã sẵn sàng và giao diện đã có
+> - **When** tôi nhập thông tin đơn hàng vào biểu mẫu dự đoán trên web
+> - **Then** hệ thống gọi API thật và hiển thị kết quả trong vài giây
+
+Đây là hành vi hệ thống thật: có actor (người quản lý vận hành), có action rõ ràng (nhập biểu mẫu), có phản hồi rõ ràng (kết quả hiển thị). Nếu viết bằng checklist thuần, sẽ mất luôn thông tin "ai thao tác, thao tác gì" — chỉ còn lại "có kết quả", làm khó hình dung lại kịch bản khi đọc lại sau này hoặc khi chuyển thành test e2e.
