@@ -98,3 +98,17 @@ erDiagram
 - **Join qua zip code (`*_zip_code_prefix` ↔ `geolocation_zip_code_prefix`) là nhiều-nhiều, không phải khóa ngoại chuẩn.** `olist_geolocation_dataset` không có cột định danh duy nhất — nhiều dòng lat/lng khác nhau có thể cùng một `geolocation_zip_code_prefix`. Join trực tiếp sẽ làm phình số dòng (fan-out), cần dedupe (vd lấy trung bình lat/lng theo zip) trước khi join ở sprint sau.
 - **`product_category_name` có thể null** ở `olist_products_dataset` (sản phẩm chưa phân loại) nên join với `product_category_name_translation` là optional (ký hiệu `o|` — zero hoặc một, không bắt buộc).
 - **Khóa chính là khóa kép (composite)** ở 2 bảng: `olist_order_items_dataset` (`order_id` + `order_item_id`) và `olist_order_payments_dataset` (`order_id` + `payment_sequential`) — một `order_id` có nhiều dòng trong 2 bảng này.
+
+## Chi tiết khóa chính – khóa ngoại từng bảng
+
+| Bảng | Khóa chính (PK) | Khóa ngoại (FK) | Trỏ tới |
+|---|---|---|---|
+| `olist_orders_dataset` | `order_id` | `customer_id` | `olist_customers_dataset.customer_id` |
+| `olist_customers_dataset` | `customer_id` | `customer_zip_code_prefix` | `olist_geolocation_dataset.geolocation_zip_code_prefix` (không unique, xem ghi chú) |
+| `olist_order_items_dataset` | `order_id` + `order_item_id` (composite) | `order_id`, `product_id`, `seller_id` | `olist_orders_dataset.order_id`, `olist_products_dataset.product_id`, `olist_sellers_dataset.seller_id` |
+| `olist_order_payments_dataset` | `order_id` + `payment_sequential` (composite) | `order_id` | `olist_orders_dataset.order_id` |
+| `olist_order_reviews_dataset` | `review_id` | `order_id` | `olist_orders_dataset.order_id` |
+| `olist_products_dataset` | `product_id` | `product_category_name` (có thể null) | `product_category_name_translation.product_category_name` |
+| `olist_sellers_dataset` | `seller_id` | `seller_zip_code_prefix` | `olist_geolocation_dataset.geolocation_zip_code_prefix` (không unique, xem ghi chú) |
+| `olist_geolocation_dataset` | không có (không có cột định danh duy nhất) | — | — |
+| `product_category_name_translation` | `product_category_name` | — | — |
