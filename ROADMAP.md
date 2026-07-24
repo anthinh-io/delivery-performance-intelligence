@@ -32,9 +32,9 @@ Một Issue/Sprint được coi là hoàn thành khi:
 
 | Sprint | Thời gian | Mục tiêu | Giá trị mang lại | Epic |
 |---|---|---|---|---|
-| 1 | 16/7 – 22/7 | Tải & khám phá cấu trúc dữ liệu Olist | Xác nhận dữ liệu đủ chất lượng và có cấu trúc dùng được, trước khi đầu tư công sức phân tích sâu | Phân tích & khám phá dữ liệu |
-| 2 | 23/7 – 29/7 | Phân tích khám phá dữ liệu (EDA): kết nối các bảng, tính nhãn trễ, phân tích mất cân bằng & xu hướng | Có bằng chứng định lượng về đặc điểm bài toán, làm căn cứ chọn đúng kỹ thuật xử lý mất cân bằng ở Sprint 4 | Phân tích & khám phá dữ liệu |
-| 3 | 30/7 – 5/8 | Bản phác thảo giao diện (wireframe) 3 màn hình + chốt danh sách đặc trưng | Chốt phạm vi trước khi code, tránh làm lại giao diện; danh sách đặc trưng là input rõ ràng cho Epic 2 | Phân tích & khám phá dữ liệu |
+| 1 | 16/7 – 22/7 | Tải & khám phá cấu trúc dữ liệu Olist, join các bảng, tính nhãn trễ, phân tích mất cân bằng & xu hướng | Có bằng chứng định lượng về đặc điểm bài toán, làm căn cứ chọn đúng kỹ thuật xử lý mất cân bằng ở Sprint 4 (nội dung EDA hoàn thành sớm, gộp vào Sprint 1 mở rộng) | Phân tích & khám phá dữ liệu |
+| 2 | 23/7 – 29/7 | Bản phác thảo giao diện (wireframe) 3 màn hình + chốt danh sách đặc trưng | Chốt phạm vi trước khi code, tránh làm lại giao diện; danh sách đặc trưng là input rõ ràng cho Epic 2 | Phân tích & khám phá dữ liệu |
+| 3 | 30/7 – 5/8 | *(trống — dự phòng, hoặc dồn việc dư từ Sprint 4 nếu cần)* | — | — |
 | 4 | 6/8 – 12/8 | Xây dựng đặc trưng (feature engineering) + xử lý mất cân bằng dữ liệu | Có bộ dữ liệu sẵn sàng huấn luyện — điều kiện tiên quyết để bắt đầu huấn luyện mô hình thật | Xây dựng mô hình học máy |
 | 5 | 13/8 – 19/8 | Huấn luyện & so sánh mô hình (Hồi quy Logistic → Rừng ngẫu nhiên → XGBoost) | Biết mô hình nào khả thi nhất với con số F1 cụ thể, phát hiện sớm nếu cần đổi hướng | Xây dựng mô hình học máy |
 | 6 | 20/8 – 26/8 | Tinh chỉnh đạt F1 ≥ 0.78, đóng gói mô hình | Xác nhận đạt ngưỡng chất lượng đã cam kết — rủi ro kỹ thuật lớn nhất được giải quyết sớm | Xây dựng mô hình học máy |
