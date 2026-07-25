@@ -1,8 +1,6 @@
-# Danh sách đặc trưng — Story #7, Task #40
+# Danh sách đặc trưng
 
-Chốt tại Iteration 2 (2026-07-24/25), tổng hợp từ Story #6 (`notebooks/11-13`), Task #38 (`notebooks/14_explore_candidate_features.ipynb`), Task #39 (`notebooks/15_region_pair_encoding_options.ipynb`). Nguồn dữ liệu: `data/processed/orders_labeled.csv` (99.441 dòng, 42 cột) + join bổ sung `order_items`/`products` cho khối lượng đơn hàng.
-
-**Ràng buộc quan trọng nhất khi chọn danh sách này: đặc trưng chỉ được dùng nếu giá trị của nó ĐÃ CÓ tại thời điểm API dự đoán được gọi** (đơn hàng mới, đã duyệt thanh toán — xem mục "Giả định thời điểm dự đoán" bên dưới). Đây là ranh giới chống rò rỉ dữ liệu (data leakage) bắt buộc theo DoD (`docs/agile-playbook.md` mục 6).
+**Ràng buộc quan trọng nhất khi chọn danh sách này: đặc trưng chỉ được dùng nếu giá trị của nó ĐÃ CÓ tại thời điểm API dự đoán được gọi** (đơn hàng mới, đã duyệt thanh toán — xem mục "Giả định thời điểm dự đoán" bên dưới). Đây là ranh giới chống rò rỉ dữ liệu (data leakage) bắt buộc theo DoD.
 
 ## Giả định thời điểm dự đoán (đã xác nhận với User)
 
