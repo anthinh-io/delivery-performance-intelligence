@@ -1,6 +1,4 @@
-# Wireframe 3 màn hình chính — Story #7, Task #41
-
-Phác thảo mức thô (AC ở Story #7 ghi rõ "sẽ chi tiết hóa thêm khi Sprint Planning cho sprint này" — đây là bản khung, chưa phải thiết kế UI cuối cùng). Dựa trên `docs/business-processes.md` (3 quy trình nghiệp vụ) và `docs/feature-list.md` (đặc trưng đã chốt Task #40).
+# Wireframe 3 màn hình chính
 
 **Phân biệt quan trọng:** Dashboard KPI và Danh sách đơn hàng dùng **dữ liệu lịch sử đã hoàn tất** (được phép dùng `review_score`, `order_delivered_*_date` vì đơn đã xong) — khác với Biểu mẫu dự đoán chỉ được dùng đặc trưng hợp lệ tại thời điểm đơn mới (theo ràng buộc chống rò rỉ dữ liệu ở `docs/feature-list.md`).
 
@@ -115,4 +113,4 @@ Phác thảo mức thô (AC ở Story #7 ghi rõ "sẽ chi tiết hóa thêm khi
 - Nút "Dự đoán rủi ro" → gọi `POST /predict` (Story #11), hiển thị trạng thái loading (AC Story #13 yêu cầu phản hồi "trong vài giây").
 - Panel kết quả: xác suất trễ (%), phân loại rủi ro (Thấp/Trung bình/Cao — ngưỡng cụ thể chốt ở Story #9/#10), **và bắt buộc có nhóm nguyên nhân rủi ro chính** (chuẩn bị hàng vs vận chuyển) — đây là giá trị nghiệp vụ cốt lõi được nhấn mạnh ở `business-processes.md` mục 4 ("phân tách nguyên nhân rủi ro là cải tiến quan trọng"), quyết định biện pháp can thiệp nào (A3.8b) — nếu không phân tách được ở Story #10/#11, phải quay lại điều chỉnh wireframe này.
 
-**Lưu ý còn để mở (chưa chốt, cần Story #9/#10):** cách tính "nhóm nguyên nhân rủi ro chính" từ mô hình (SHAP values, feature importance theo nhóm, hay mô hình phụ riêng biệt) — wireframe giả định có, nhưng cơ chế cụ thể tùy thuộc kỹ thuật mô hình chọn ở Sprint sau.
+**Lưu ý còn để mở (chưa chốt):** cách tính "nhóm nguyên nhân rủi ro chính" từ mô hình (SHAP values, feature importance theo nhóm, hay mô hình phụ riêng biệt) — wireframe giả định có, nhưng cơ chế cụ thể tùy thuộc kỹ thuật mô hình chọn ở Sprint sau.
