@@ -33,7 +33,7 @@ Một Issue/Sprint được coi là hoàn thành khi:
 | Sprint | Thời gian | Mục tiêu | Giá trị mang lại | Epic |
 |---|---|---|---|---|
 | 1 | 16/7 – 22/7 | Tải & khám phá cấu trúc dữ liệu Olist, join các bảng, tính nhãn trễ, phân tích mất cân bằng & xu hướng | Có bằng chứng định lượng về đặc điểm bài toán, làm căn cứ chọn đúng kỹ thuật xử lý mất cân bằng ở Sprint 4 (nội dung EDA hoàn thành sớm, gộp vào Sprint 1 mở rộng) | Phân tích & khám phá dữ liệu |
-| 2 | 23/7 – 29/7 | Bản phác thảo giao diện (wireframe) 3 màn hình + chốt danh sách đặc trưng | Chốt phạm vi trước khi code, tránh làm lại giao diện; danh sách đặc trưng là input rõ ràng cho Epic 2 | Phân tích & khám phá dữ liệu |
+| 2 | 23/7 – 29/7 | Chốt phạm vi (wireframe + đặc trưng) → dữ liệu sẵn sàng huấn luyện → so sánh 3 mô hình baseline, làm căn cứ chọn mô hình để tinh chỉnh ở sprint kế (Story #7 + #8 dồn sớm, đã Done; Story #9 + #10 dồn sớm từ Sprint 5-6 gốc — #10 là mục tiêu mở rộng, phụ thuộc kết quả #9 nên có thể tràn sang Sprint 3) | Chốt phạm vi trước khi code; có bộ dữ liệu huấn luyện; biết mô hình nào khả thi nhất sớm hơn kế hoạch gốc | Phân tích & khám phá dữ liệu / Xây dựng mô hình học máy |
 | 3 | 30/7 – 5/8 | *(trống — dự phòng, hoặc dồn việc dư từ Sprint 4 nếu cần)* | — | — |
 | 4 | 6/8 – 12/8 | Xây dựng đặc trưng (feature engineering) + xử lý mất cân bằng dữ liệu | Có bộ dữ liệu sẵn sàng huấn luyện — điều kiện tiên quyết để bắt đầu huấn luyện mô hình thật | Xây dựng mô hình học máy |
 | 5 | 13/8 – 19/8 | Huấn luyện & so sánh mô hình (Hồi quy Logistic → Rừng ngẫu nhiên → XGBoost) | Biết mô hình nào khả thi nhất với con số F1 cụ thể, phát hiện sớm nếu cần đổi hướng | Xây dựng mô hình học máy |
