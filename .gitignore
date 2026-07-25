@@ -287,5 +287,5 @@ Icon[]
 # Resource forks
 ._*
 
-# Trained model artifacts (tai tao duoc bang notebooks/20_train_baseline_models.ipynb)
+# Trained model artifacts (reproducible via notebooks/20_train_baseline_models.ipynb)
 models/*.pkl
