@@ -30,15 +30,15 @@ Một Issue/Sprint được coi là hoàn thành khi:
 
 ## Bảng phân rã công việc theo Sprint
 
-| Sprint | Thời gian | Mục tiêu | Giá trị mang lại | Epic |
-|---|---|---|---|---|
-| 1 | 16/7 – 22/7 | Tải & khám phá cấu trúc dữ liệu Olist, join các bảng, tính nhãn trễ, phân tích mất cân bằng & xu hướng | Có bằng chứng định lượng về đặc điểm bài toán, làm căn cứ chọn đúng kỹ thuật xử lý mất cân bằng ở Sprint 4 (nội dung EDA hoàn thành sớm, gộp vào Sprint 1 mở rộng) | Phân tích & khám phá dữ liệu |
-| 2 | 23/7 – 29/7 | Chốt phạm vi (wireframe + đặc trưng) → dữ liệu sẵn sàng huấn luyện → so sánh 3 mô hình baseline, làm căn cứ chọn mô hình để tinh chỉnh ở sprint kế (Story #7 + #8 dồn sớm, đã Done; Story #9 + #10 dồn sớm từ Sprint 5-6 gốc — #10 là mục tiêu mở rộng, phụ thuộc kết quả #9 nên có thể tràn sang Sprint 3) | Chốt phạm vi trước khi code; có bộ dữ liệu huấn luyện; biết mô hình nào khả thi nhất sớm hơn kế hoạch gốc | Phân tích & khám phá dữ liệu / Xây dựng mô hình học máy |
-| 3 | 30/7 – 5/8 | *(trống — dự phòng, hoặc dồn việc dư từ Sprint 4 nếu cần)* | — | — |
-| 4 | 6/8 – 12/8 | Xây dựng đặc trưng (feature engineering) + xử lý mất cân bằng dữ liệu | Có bộ dữ liệu sẵn sàng huấn luyện — điều kiện tiên quyết để bắt đầu huấn luyện mô hình thật | Xây dựng mô hình học máy |
-| 5 | 13/8 – 19/8 | Huấn luyện & so sánh mô hình (Hồi quy Logistic → Rừng ngẫu nhiên → XGBoost) | Biết mô hình nào khả thi nhất với con số F1 cụ thể, phát hiện sớm nếu cần đổi hướng | Xây dựng mô hình học máy |
-| 6 | 20/8 – 26/8 | Tinh chỉnh đạt F1 ≥ 0.78, đóng gói mô hình | Xác nhận đạt ngưỡng chất lượng đã cam kết — rủi ro kỹ thuật lớn nhất được giải quyết sớm | Xây dựng mô hình học máy |
-| 7 | 27/8 – 2/9 | Xây dựng giao diện lập trình ứng dụng (API) dạng REST | Mô hình trở thành dịch vụ gọi được qua HTTP — mở khóa việc tích hợp cho Epic 3 | Xây dựng mô hình học máy |
-| 8 | 3/9 – 9/9 | Bảng điều khiển KPI + trang quản lý đơn hàng | Người dùng lần đầu nhìn thấy hiệu suất giao hàng trực quan, thay thế theo dõi thủ công | Xây ứng dụng web |
-| 9 | 10/9 – 16/9 | Biểu mẫu dự đoán tích hợp API + kiểm thử toàn trình (end-to-end) | Hoàn thành nghiệp vụ lõi: dự đoán rủi ro thời gian thực — biến quy trình từ phản ứng sang chủ động | Xây ứng dụng web / Kiểm thử & hoàn thiện |
-| 10 | 17/9 – 23/9 | Sửa lỗi, tối ưu trải nghiệm người dùng (UX), báo cáo cuối kỳ, trình diễn | Đảm bảo đủ tin cậy để bàn giao | Kiểm thử & hoàn thiện |
+| Sprint | Thời gian | Mục tiêu | Giá trị mang lại |
+|---|---|---|---|
+| 1 | 16/7 – 22/7 | Tải & khám phá cấu trúc dữ liệu Olist, join các bảng, tính nhãn trễ, phân tích mất cân bằng & xu hướng | Có bằng chứng định lượng về đặc điểm bài toán, làm căn cứ chọn đúng kỹ thuật xử lý mất cân bằng dữ liệu |
+| 2 | 23/7 – 29/7 | Chốt phạm vi (wireframe + đặc trưng) → xây dựng bộ đặc trưng và xử lý mất cân bằng dữ liệu → huấn luyện & so sánh 3 mô hình baseline trên tập test | Chốt phạm vi trước khi code; có bộ dữ liệu sẵn sàng huấn luyện; biết mô hình nào khả thi nhất sớm hơn kế hoạch gốc — phát hiện F1 trần thực tế (~0.35, PR-AUC ~0.28) cách xa mục tiêu 0.78 cam kết ban đầu, dẫn tới quyết định dời phần tinh chỉnh mô hình |
+| 3 | 30/7 – 5/8 | Thử đặc trưng khoảng cách người bán↔khách hàng, tinh chỉnh hyperparameter, đóng gói mô hình | Xác nhận (hoặc điều chỉnh có căn cứ) ngưỡng chất lượng mô hình trước khi xây API — mục tiêu F1≥0.78 xem lại dựa trên bằng chứng thực nghiệm, đàm phán lại nếu vẫn bất khả thi sau thí nghiệm |
+| 4 | 6/8 – 12/8 | Xây dựng giao diện lập trình ứng dụng (API) dạng REST | Mô hình trở thành dịch vụ gọi được qua HTTP — mở khóa việc tích hợp cho ứng dụng web ở các sprint sau |
+| 5 | 13/8 – 19/8 | Bảng điều khiển KPI + trang quản lý đơn hàng | Người dùng lần đầu nhìn thấy hiệu suất giao hàng trực quan, thay thế theo dõi thủ công |
+| 6 | 20/8 – 26/8 | Biểu mẫu dự đoán tích hợp API + kiểm thử toàn trình (end-to-end) | Hoàn thành nghiệp vụ lõi: dự đoán rủi ro thời gian thực — biến quy trình từ phản ứng sang chủ động |
+| 7 | 27/8 – 2/9 | Sửa lỗi, tối ưu trải nghiệm người dùng (UX), báo cáo cuối kỳ, trình diễn | Đảm bảo đủ tin cậy để bàn giao |
+| 8 | 3/9 – 9/9 | *(Buffer dự phòng — không cam kết trước)* | — |
+| 9 | 10/9 – 16/9 | *(Buffer dự phòng — không cam kết trước)* | — |
+| 10 | 17/9 – 23/9 | *(Buffer dự phòng — không cam kết trước)* | — |
