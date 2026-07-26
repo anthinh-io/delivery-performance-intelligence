@@ -11,6 +11,7 @@ Vẫn giữ lại phần cốt lõi giúp Agile hiệu quả:
 - **Nhịp sprint cố định (1 tuần)** — ép tiến độ, phát hiện rủi ro sớm thay vì dồn việc đến gần deadline.
 - **Sprint Goal rõ ràng** — mỗi tuần có một mục tiêu có thể tự kiểm chứng, thay vì mốc giai đoạn mơ hồ kéo dài 3-4 tuần.
 - **Sprint Review/Retro rút gọn** — cuối mỗi tuần tự ghi 2-3 dòng: đạt goal chưa, cần điều chỉnh gì cho tuần sau (ghi trực tiếp trong Issue đóng milestone, không cần họp hay tập tin riêng).
+- **Tài liệu kế hoạch mô tả hiện tại** — ghi mục tiêu đang có hiệu lực, không thuật lại lịch sử điều chỉnh (việc đó đã có trong commit/PR/Issue).
 
 ## 2. Ba cấp độ phân rã công việc
 
@@ -68,6 +69,8 @@ Một Issue/Sprint được coi là hoàn thành khi:
 - [ ] Không có rò rỉ dữ liệu (data leakage) đối với các task liên quan đến mô hình học máy
 - [ ] Đã commit/tạo Pull Request tương ứng
 - [ ] Tự đánh giá lại Sprint Goal (đạt/chưa đạt) và ghi chú điều chỉnh cho sprint sau ngay trong Issue đóng milestone
+
+Ghi chú điều chỉnh thuộc về Issue khi đóng sprint — các tài liệu kế hoạch khác (roadmap, wireframe...) chỉ nên mô tả trạng thái hiện tại, không thuật lại lý do thay đổi so với bản trước.
 
 ## 7. Tiêu chí chấp nhận (Acceptance Criteria): Checklist hay Given–When–Then?
 
