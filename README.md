@@ -27,7 +27,7 @@ Người dùng nhập thông tin đơn hàng và nhận dự đoán rủi ro gia
 ## 3. Kết quả kỳ vọng
 
 - Ứng dụng web hoạt động hoàn chỉnh, thay thế quy trình quản lý hậu cần thủ công.
-- Mô hình học máy đạt điểm F1 ≥ 0.78 trên bài toán phân loại giao trễ.
+- Mô hình học máy đạt điểm F1 ≥ 0.30 trên bài toán phân loại giao trễ (mục tiêu đã đàm phán lại dựa trên trần tín hiệu thực nghiệm của dữ liệu Olist).
 - Giao diện lập trình ứng dụng cho phép dự đoán thời gian thực từ giao diện web.
 - Nền tảng mở rộng trong tương lai: tối ưu tuyến đường, trợ lý trí tuệ nhân tạo, hệ thống quản lý chuỗi cung ứng đầy đủ.
 
