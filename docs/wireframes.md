@@ -95,7 +95,8 @@
 │  │  ⚠ Rủi ro CAO — xác suất trễ: 68%      │                          │
 │  │                                          │                          │
 │  │  Nhóm nguyên nhân chính:                │                          │
-│  │   🔵 Vận chuyển (65%)  🟢 Chuẩn bị hàng (35%) │                     │
+│  │   🔵 Vận chuyển (60%)  🟢 Chuẩn bị & thanh toán (25%)  │            │
+│  │   🟡 Yếu tố thời điểm (15%)              │                          │
 │  │                                          │                          │
 │  │  → Gợi ý: cân nhắc đổi đơn vị vận chuyển │                          │
 │  └────────────────────────────────────────┘                          │
@@ -111,6 +112,6 @@
   - Ngày đặt hàng + ngày duyệt thanh toán → hệ thống tự tính `approval_gap_hours`, `order_purchase_month`
   - Ngày giao dự kiến → hệ thống tự tính `estimated_delivery_days`
 - Nút "Dự đoán rủi ro" → gọi `POST /predict` (Story #11), hiển thị trạng thái loading (AC Story #13 yêu cầu phản hồi "trong vài giây").
-- Panel kết quả: xác suất trễ (%), phân loại rủi ro (Thấp/Trung bình/Cao — ngưỡng cụ thể chốt ở Story #9/#10), **và bắt buộc có nhóm nguyên nhân rủi ro chính** (chuẩn bị hàng vs vận chuyển) — đây là giá trị nghiệp vụ cốt lõi được nhấn mạnh ở `business-processes.md` mục 4 ("phân tách nguyên nhân rủi ro là cải tiến quan trọng"), quyết định biện pháp can thiệp nào (A3.8b) — nếu không phân tách được ở Story #10/#11, phải quay lại điều chỉnh wireframe này.
+- Panel kết quả: xác suất trễ (%), phân loại rủi ro (Thấp/Trung bình/Cao — ngưỡng cụ thể chốt ở Story #9/#10), **và bắt buộc có nhóm nguyên nhân rủi ro chính** (🔵 Vận chuyển / 🟢 Chuẩn bị & thanh toán / 🟡 Yếu tố thời điểm) — đây là giá trị nghiệp vụ cốt lõi được nhấn mạnh ở `business-processes.md` mục 4 ("phân tách nguyên nhân rủi ro là cải tiến quan trọng"), quyết định biện pháp can thiệp nào (A3.8b).
 
-**Lưu ý còn để mở (chưa chốt):** cách tính "nhóm nguyên nhân rủi ro chính" từ mô hình (SHAP values, feature importance theo nhóm, hay mô hình phụ riêng biệt) — wireframe giả định có, nhưng cơ chế cụ thể tùy thuộc kỹ thuật mô hình chọn ở Sprint sau.
+**Cơ chế tính "nhóm nguyên nhân rủi ro chính" (đã chốt qua spike thử nghiệm, xem `notebooks/27_risk_group_shap_spike.ipynb`)**: SHAP values tính riêng cho từng đơn (`TreeExplainer` trên XGBoost), gộp `|SHAP|` theo 3 nhóm — 🔵 Vận chuyển (`seller_customer_distance_km`, `estimated_delivery_days`, state đang áp dụng cho đơn), 🟢 Chuẩn bị & thanh toán (đổi tên từ "Chuẩn bị hàng" vì nhóm này gồm cả `payment_*`, chiếm ~30% trọng số nhóm, không chỉ độ phức tạp đơn), 🟡 Yếu tố thời điểm (`order_purchase_month` riêng — ban đầu định loại hẳn vì là confound mùa vụ đã xác nhận, không phải nguyên nhân hành động được, nhưng dữ liệu thật cho thấy nó là driver mạnh nhất ở 60% đơn dự đoán trễ nên tách thành nhóm thứ 3 công khai thay vì ẩn đi). 3 nhóm luôn cộng đủ 100%, tỷ lệ % biến thiên thật theo từng đơn (đã kiểm chứng trên tập test, không degenerate).
