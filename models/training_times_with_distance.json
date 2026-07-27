@@ -1,0 +1,5 @@
+{
+  "logistic_regression": 20.366829300000063,
+  "random_forest": 2.138088599999719,
+  "xgboost": 2.44155740000042
+}
