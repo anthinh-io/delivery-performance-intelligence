@@ -15,3 +15,14 @@ uv run jupyter nbconvert --to notebook --execute --inplace notebooks/20_train_ba
 Sinh ra:
 - `logistic_regression.pkl`, `random_forest.pkl`, `xgboost.pkl` — model đã huấn luyện trên `orders_features_train.csv`
 - `training_times.json` — có commit vào git (thời gian huấn luyện mỗi model, dùng cho bảng so sánh Task #50)
+
+## Model cuối cùng (Story #10)
+
+```bash
+uv run jupyter nbconvert --to notebook --execute --inplace notebooks/26_package_final_model.ipynb
+```
+
+Sinh ra `xgboost_final.pkl` (không commit, gitignored) — XGBoost, có đặc trưng `seller_customer_distance_km`,
+`scale_pos_weight=6.0`. Đây là model dùng cho Story #11 (API) trở đi. `final_model.json` (có commit vào git) lưu
+`decision_threshold` (0.539 — **không phải 0.5**, bắt buộc dùng đúng ngưỡng này khi suy luận) và danh sách đặc
+trưng đầu vào theo đúng thứ tự.
