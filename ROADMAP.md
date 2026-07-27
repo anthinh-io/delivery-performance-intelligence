@@ -33,12 +33,12 @@ Một Issue/Sprint được coi là hoàn thành khi:
 | Sprint | Thời gian | Mục tiêu | Giá trị mang lại |
 |---|---|---|---|
 | 1 | 16/7 – 22/7 | Tải & khám phá cấu trúc dữ liệu Olist, join các bảng, tính nhãn trễ, phân tích mất cân bằng & xu hướng | Có bằng chứng định lượng về đặc điểm bài toán, làm căn cứ chọn đúng kỹ thuật xử lý mất cân bằng dữ liệu |
-| 2 | 23/7 – 29/7 | Chốt phạm vi (wireframe + đặc trưng) → xây dựng bộ đặc trưng và xử lý mất cân bằng dữ liệu → huấn luyện & so sánh 3 mô hình baseline trên tập test | Chốt phạm vi trước khi code; có bộ dữ liệu sẵn sàng huấn luyện; biết mô hình nào khả thi nhất sớm hơn kế hoạch gốc — phát hiện F1 trần thực tế (~0.35, PR-AUC ~0.28) cách xa mục tiêu 0.78 cam kết ban đầu, dẫn tới quyết định dời phần tinh chỉnh mô hình |
-| 3 | 30/7 – 5/8 | Thử đặc trưng khoảng cách người bán↔khách hàng, tinh chỉnh hyperparameter, đóng gói mô hình | Xác nhận trần chất lượng mô hình thật (~0.35) qua thí nghiệm đặc trưng khoảng cách và điều chỉnh trọng số lớp — mục tiêu chất lượng đàm phán lại còn F1≥0.30 |
-| 4 | 6/8 – 12/8 | Xây dựng giao diện lập trình ứng dụng (API) dạng REST | Mô hình trở thành dịch vụ gọi được qua HTTP — mở khóa việc tích hợp cho ứng dụng web ở các sprint sau |
-| 5 | 13/8 – 19/8 | Bảng điều khiển KPI + trang quản lý đơn hàng | Người dùng lần đầu nhìn thấy hiệu suất giao hàng trực quan, thay thế theo dõi thủ công |
-| 6 | 20/8 – 26/8 | Biểu mẫu dự đoán tích hợp API + kiểm thử toàn trình (end-to-end) | Hoàn thành nghiệp vụ lõi: dự đoán rủi ro thời gian thực — biến quy trình từ phản ứng sang chủ động |
-| 7 | 27/8 – 2/9 | Sửa lỗi, tối ưu trải nghiệm người dùng (UX), báo cáo cuối kỳ, trình diễn | Đảm bảo đủ tin cậy để bàn giao |
+| 2 | 23/7 – 29/7 | Chốt phạm vi (wireframe + đặc trưng) → xây dựng bộ đặc trưng và xử lý mất cân bằng dữ liệu → huấn luyện & so sánh 3 mô hình baseline trên tập thử nghiệm | Chốt phạm vi trước khi code; có bộ dữ liệu sẵn sàng huấn luyện; biết mô hình nào khả thi nhất sớm hơn kế hoạch gốc — phát hiện F1 trần thực tế (~0.35, PR-AUC ~0.28) cách xa mục tiêu 0.78 cam kết ban đầu, dẫn tới quyết định dời phần tinh chỉnh mô hình |
+| 3 | 30/7 – 5/8 | Xây dựng giao diện lập trình ứng dụng (API) dạng REST | Mô hình trở thành dịch vụ gọi được qua HTTP — mở khóa việc tích hợp cho ứng dụng web ở các giai đoạn phát triển sau |
+| 4 | 6/8 – 12/8 | Dashboard KPI tổng quan + trang quản lý danh sách đơn hàng | Người dùng lần đầu nhìn thấy hiệu suất giao hàng trực quan, thay thế theo dõi thủ công |
+| 5 | 13/8 – 19/8 | Biểu mẫu dự đoán tích hợp API + kiểm thử toàn trình (end-to-end) | Hoàn thành nghiệp vụ lõi: dự đoán rủi ro thời gian thực — biến quy trình từ phản ứng sang chủ động |
+| 6 | 20/8 – 26/8 | Sửa lỗi, tối ưu trải nghiệm người dùng (UX), báo cáo cuối kỳ, trình diễn | Đảm bảo đủ tin cậy để bàn giao |
+| 7 | 27/8 – 2/9 | *(Buffer dự phòng — không cam kết trước)* | — |
 | 8 | 3/9 – 9/9 | *(Buffer dự phòng — không cam kết trước)* | — |
 | 9 | 10/9 – 16/9 | *(Buffer dự phòng — không cam kết trước)* | — |
 | 10 | 17/9 – 23/9 | *(Buffer dự phòng — không cam kết trước)* | — |
