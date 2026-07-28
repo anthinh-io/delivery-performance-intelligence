@@ -19,13 +19,23 @@ Giao diện lập trình ứng dụng dự đoán bằng học máy đảm nhi�
 
 ```
 src/api/
-├── pyproject.toml
+├── pyproject.toml                 # cấu hình gói thư viện
+├── postman_collection.json        # bộ sưu tập request để test thủ công
 ├── app/
 │   ├── __init__.py
-│   └── main.py
+│   ├── main.py                    # khởi tạo ứng dụng, định nghĩa route
+│   ├── schemas.py                 # định nghĩa schema dữ liệu vào/ra
+│   ├── preprocessing.py           # xử lý dữ liệu đầu vào
+│   └── model.py                   # dự đoán bằng model
 └── tests/
     ├── __init__.py
-    └── test_health.py
+    ├── test_health.py             # test route health
+    ├── test_schemas.py            # test schema dữ liệu
+    ├── test_preprocessing.py      # test xử lý dữ liệu đầu vào
+    ├── test_model.py              # test dự đoán
+    ├── test_predict_endpoint.py   # test route predict
+    └── fixtures/
+        └── golden_order.json      # dữ liệu mẫu dùng cho test
 ```
 
 ## Cài đặt
@@ -61,8 +71,11 @@ Chạy test:
 uv run --project src/api pytest src/api
 ```
 
+Kiểm tra thủ công `POST /predict` bằng Postman: xem `postman_collection.json` (import vào Postman/Postman VSCode extension, có sẵn test script tự động).
+
 ## API Reference
 
 | Method | Path | Mô tả | Response |
 |---|---|---|---|
 | GET | `/health` | Health check | `{"status": "ok"}` |
+| POST | `/predict` | Dự đoán rủi ro giao trễ + nhóm nguyên nhân | `{"is_delayed": bool, "probability": float, "risk_groups": [{"name": str, "contribution_pct": float}]}` |

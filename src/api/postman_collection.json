@@ -1,0 +1,120 @@
+{
+  "info": {
+    "name": "Delivery Performance Intelligence API",
+    "description": "Test thủ công POST /predict. Import vào Postman hoặc Postman VSCode extension.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health check - ứng dụng đang chạy (kỳ vọng 200)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["health"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status code is 200', () => pm.response.to.have.status(200));",
+              "pm.test('body is {status: ok}', () => {",
+              "    pm.expect(pm.response.json()).to.eql({ status: 'ok' });",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Predict - đơn hợp lệ (kỳ vọng 200)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"items_num_items\": 1,\n  \"items_num_products\": 1,\n  \"items_num_sellers\": 1,\n  \"items_total_price\": 199.7,\n  \"items_total_freight\": 19.28,\n  \"items_num_categories\": 1,\n  \"items_total_weight_g\": 350.0,\n  \"items_multi_seller\": false,\n  \"payment_total_value\": 218.98,\n  \"payment_num_rows\": 1,\n  \"payment_num_types\": 1,\n  \"payment_max_installments\": 10,\n  \"payment_value_boleto\": 0.0,\n  \"payment_value_credit_card\": 218.98,\n  \"payment_value_debit_card\": 0.0,\n  \"payment_value_not_defined\": 0.0,\n  \"payment_value_voucher\": 0.0,\n  \"payment_has_boleto\": false,\n  \"payment_has_credit_card\": true,\n  \"payment_has_debit_card\": false,\n  \"payment_has_not_defined\": false,\n  \"payment_has_voucher\": false,\n  \"order_purchase_timestamp\": \"2018-04-26T21:44:12\",\n  \"order_approved_at\": \"2018-04-26T21:55:13\",\n  \"order_estimated_delivery_date\": \"2018-05-18T00:00:00\",\n  \"customer_zip_code_prefix\": 29703,\n  \"primary_seller_zip_code_prefix\": 1539\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/predict",
+          "host": ["{{baseUrl}}"],
+          "path": ["predict"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('status code is 200', () => pm.response.to.have.status(200));",
+              "",
+              "const body = pm.response.json();",
+              "",
+              "pm.test('is_delayed is true (đơn hàng thật, đã xác nhận trước đó)', () => {",
+              "    pm.expect(body.is_delayed).to.eql(true);",
+              "});",
+              "",
+              "pm.test('probability khớp đơn hàng thật (~0.628)', () => {",
+              "    pm.expect(body.probability).to.be.closeTo(0.6280580163002014, 0.0001);",
+              "});",
+              "",
+              "pm.test('có đúng 3 nhóm nguyên nhân rủi ro', () => {",
+              "    pm.expect(body.risk_groups).to.have.lengthOf(3);",
+              "    const names = body.risk_groups.map(g => g.name).sort();",
+              "    pm.expect(names).to.eql(['Chuẩn bị & thanh toán', 'Vận chuyển', 'Yếu tố thời điểm'].sort());",
+              "});",
+              "",
+              "pm.test('tổng % 3 nhóm xấp xỉ 100', () => {",
+              "    const total = body.risk_groups.reduce((sum, g) => sum + g.contribution_pct, 0);",
+              "    pm.expect(total).to.be.closeTo(100, 0.01);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Predict - thiếu field bắt buộc (kỳ vọng 422)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"items_num_items\": 1,\n  \"items_num_products\": 1,\n  \"items_num_sellers\": 1,\n  \"items_total_freight\": 19.28,\n  \"items_num_categories\": 1,\n  \"items_total_weight_g\": 350.0,\n  \"items_multi_seller\": false,\n  \"payment_total_value\": 218.98,\n  \"payment_num_rows\": 1,\n  \"payment_num_types\": 1,\n  \"payment_max_installments\": 10,\n  \"payment_value_boleto\": 0.0,\n  \"payment_value_credit_card\": 218.98,\n  \"payment_value_debit_card\": 0.0,\n  \"payment_value_not_defined\": 0.0,\n  \"payment_value_voucher\": 0.0,\n  \"payment_has_boleto\": false,\n  \"payment_has_credit_card\": true,\n  \"payment_has_debit_card\": false,\n  \"payment_has_not_defined\": false,\n  \"payment_has_voucher\": false,\n  \"order_purchase_timestamp\": \"2018-04-26T21:44:12\",\n  \"order_approved_at\": \"2018-04-26T21:55:13\",\n  \"order_estimated_delivery_date\": \"2018-05-18T00:00:00\",\n  \"customer_zip_code_prefix\": 29703,\n  \"primary_seller_zip_code_prefix\": 1539\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/predict",
+          "host": ["{{baseUrl}}"],
+          "path": ["predict"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('thiếu items_total_price -> status code 422', () => pm.response.to.have.status(422));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
