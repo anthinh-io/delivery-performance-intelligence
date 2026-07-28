@@ -12,3 +12,13 @@ dependencies = [
     "shap>=0.52.0",
     "xgboost>=3.3.0",
 ]
+
+[tool.uv.workspace]
+members = ["src/*"]
+
+[tool.typos.files]
+extend-exclude = [
+    "img/",
+    "uv.lock",
+    "bun.lock",
+]
