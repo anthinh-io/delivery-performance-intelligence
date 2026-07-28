@@ -1,0 +1,18 @@
+[project]
+name = "api"
+version = "0.1.0"
+description = "A web application for managing and predicting delivery performance in logistics, powered by ML models trained on the Olist Brazilian E-Commerce dataset."
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi>=0.140.7",
+    "uvicorn>=0.51.0",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=9.1.1",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
