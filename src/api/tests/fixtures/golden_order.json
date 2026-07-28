@@ -1,6 +1,13 @@
 {
   "order_id": "b65210a8511143d6d2357dbeaee25e74",
   "note": "Don hang that trong data/processed/orders_features_test.csv, doi chieu voi field tho trong orders_joined.csv. customer_state that = ES, primary_seller_state that = SP.",
+  "expected_probability": 0.6280580163002014,
+  "expected_is_delayed": true,
+  "expected_risk_group_pct": {
+    "shipping": 47.304595947265625,
+    "prep": 45.85053634643555,
+    "seasonal": 6.8448662757873535
+  },
   "request": {
     "items_num_items": 1,
     "items_num_products": 1,
