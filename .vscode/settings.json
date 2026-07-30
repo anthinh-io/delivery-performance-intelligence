@@ -1,0 +1,27 @@
+{
+  "terminal.integrated.suggest.enabled": true,
+  "terminal.integrated.cwd": "${workspaceFolder}",
+  "editor.formatOnSave": true,
+  "editor.rulers": [
+    {
+      "column": 100,
+      "color": "#00ff00"
+    },
+    {
+      "column": 120,
+      "color": "#0000ff"
+    }
+  ],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": ["--verbose", "--capture=no"],
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "files.associations": {
+    "*.json": "jsonc"
+  }
+}
