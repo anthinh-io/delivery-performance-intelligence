@@ -26,7 +26,10 @@ src/api/
 │   ├── main.py                    # khởi tạo ứng dụng, định nghĩa route
 │   ├── schemas.py                 # định nghĩa schema dữ liệu vào/ra
 │   ├── preprocessing.py           # xử lý dữ liệu đầu vào
-│   └── model.py                   # dự đoán bằng model
+│   ├── model.py                   # dự đoán bằng model
+│   └── db.py                      # nạp dữ liệu đơn hàng lịch sử vào SQLite
+├── data/
+│   └── orders.sqlite3             # (gitignored) build lại bằng `python -m app.db`
 └── tests/
     ├── __init__.py
     ├── test_health.py             # test route health
@@ -34,8 +37,10 @@ src/api/
     ├── test_preprocessing.py      # test xử lý dữ liệu đầu vào
     ├── test_model.py              # test dự đoán
     ├── test_predict_endpoint.py   # test route predict
+    ├── test_db.py                 # test nạp dữ liệu vào SQLite
     └── fixtures/
-        └── golden_order.json      # dữ liệu mẫu dùng cho test
+        ├── golden_order.json      # dữ liệu mẫu dùng cho test
+        └── orders_sample.csv      # CSV mẫu dùng cho test nạp SQLite
 ```
 
 ## Cài đặt
@@ -70,6 +75,15 @@ Chạy test:
 ```bash
 uv run --project src/api pytest src/api
 ```
+
+Build (hoặc build lại) cơ sở dữ liệu SQLite dùng cho trang danh sách/chi tiết đơn hàng, từ `data/processed/orders_labeled.csv`:
+
+```bash
+cd src/api
+uv run python -m app.db
+```
+
+Kết quả: `src/api/data/orders.sqlite3` (gitignored, ~38MB — tái tạo lại được từ CSV đã có trong git, không cần commit).
 
 Kiểm tra thủ công `POST /predict` bằng Postman: xem `postman_collection.json` (import vào Postman/Postman VSCode extension, có sẵn test script tự động).
 
