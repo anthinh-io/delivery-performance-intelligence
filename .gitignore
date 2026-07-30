@@ -288,7 +288,7 @@ Icon[]
 ._*
 
 # Trained model artifacts
-models/*.pkl
+**/*.pkl
 
 # Order database (rebuilt from data/processed/orders_labeled.csv via src/api/app/db.py)
-src/api/data/*.sqlite3
+**/*.sqlite3
