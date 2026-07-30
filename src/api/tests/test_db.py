@@ -64,7 +64,7 @@ def test_build_database_stores_missing_values_as_null(tmp_path):
         row = conn.execute(
             """
             SELECT order_delivered_carrier_date, order_delivered_customer_date,
-                   primary_seller_zip_code_prefix, review_score_avg
+                   primary_seller_zip_code_prefix, review_score_avg, is_delayed
             FROM orders WHERE order_id = ?
             """,
             ("ccc3",),
@@ -72,7 +72,7 @@ def test_build_database_stores_missing_values_as_null(tmp_path):
     finally:
         conn.close()
 
-    assert row == (None, None, None, None)
+    assert row == (None, None, None, None, None)
 
 
 def test_build_database_is_idempotent_when_rerun(tmp_path):
